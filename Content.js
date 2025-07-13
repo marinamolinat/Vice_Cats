@@ -1,10 +1,11 @@
 
 let lastUrl = location.href;
 
+
 new MutationObserver(() => {
   const currentUrl = location.href;
   if (currentUrl !== lastUrl) {
-    lastUrl = currentUrl;
+    
 
     // Check if its a video URL
     if (currentUrl.includes("watch?v=")) {
@@ -14,9 +15,11 @@ new MutationObserver(() => {
       if (confirmed) {
       window.location.href = link.href;
       } else {
-      window.location.href = "https://www.youtube.com/"; 
+      window.location.href = lastUrl; 
       }
     
     }
+    lastUrl = currentUrl;
   }
+
 }).observe(document, { subtree: true, childList: true });
