@@ -1,26 +1,26 @@
 {
-    "manifest_version": 3,
-    "name": "IntenTube :)",
-    "version": "1.0.0",
-    "description": "An extention for mindfull Youtube consumption",
-    "action": {
-      "default_popup": "popup.html",
-      "default_icon": {
-        "48": "images/icon.png",
-        "128": "images/icon.png"
-      }
-    },
-    "content_scripts": [
+  "manifest_version": 3,
+  "name": "Vice Cats",
+  "version": "1.0.0",
+  "description": "Mindful YouTube usage. And cats.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "48": "images/48.png",
+      "128": "images/128.png"
+    }
+  },
+  "permissions": ["scripting", "tabs"],
+  "host_permissions": ["https://www.youtube.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
     {
-      "js": [
-        "Content.js"
-      ],
-      "matches": [
-        "https://www.youtube.com/*", 
-        "https://developer.chrome.com/docs/extensions/*",
-        "https://developer.chrome.com/docs/webstore/*"
-        
-      ]
+      "matches": ["*://www.youtube.com/*"],
+      "js": ["Content.js"],
+      "run_at": "document_idle"
+      
     }
   ]
-  }
+}
