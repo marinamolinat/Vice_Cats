@@ -1,3 +1,11 @@
+// Will check if the page that loaded is a video
+if (window.location.href.includes('watch')) {
+  window.location.replace("https://www.youtube.com/");
+  
+
+  
+
+}
 
 
 window.addEventListener('click', function (event) {
@@ -7,7 +15,7 @@ window.addEventListener('click', function (event) {
     event.preventDefault();                
     event.stopPropagation();               
     console.log("Video click detected:", anchor.href);
-    
+
 
     
   }
