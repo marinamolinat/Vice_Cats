@@ -1,2 +1,3 @@
-[ ] fix the issues with the back button
-[ ] fix the issue that wehn cancel is pressed, it returns to the homepage and not to where u were before
+- Work on index.html
+- make a history of the videos
+
