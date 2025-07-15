@@ -9,6 +9,8 @@ body {
      }
      
      h1 {
+        text-align: center; font-size: 100px;
+        background-size: cover;
        font-family: "Rubik 80s Fade", system-ui;
         font-weight: 400;
         font-style: normal;
@@ -28,3 +30,34 @@ body {
        font-size: 16px;
        cursor: pointer;
      }
+     textarea {
+
+       height: auto;
+       border-radius: 5px;
+       border: 1px solid #ccc;
+       box-sizing: border-box;
+        
+        background-image: url(https://i.pinimg.com/736x/02/df/02/02df02b5e7bd5fa7344dce3ef1054658.jpg);
+        color: #00FFFF;
+         font-family: "Handjet", sans-serif;
+        font-size: 40px;
+     }
+
+     #center {
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+
+     }
+
+     #mainContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+     }
+     #wordCount {
+        font-size: 15px;
+     }
+
+        

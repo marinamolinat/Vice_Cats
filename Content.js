@@ -10,12 +10,13 @@ function sendMessage(message) {
   }
 }
 
+//Detects if the page loaded is a yt vid 
 if (window.location.href.includes("watch")) {
   sendMessage({ action: "redirectToExtensionPage" });
 }
 
 
-
+// Detects if a yt vid is clicked
 window.addEventListener('click', function (event) {
   const anchor = event.target.closest('a');
 
