@@ -1,13 +1,19 @@
-// Will check if the page that loaded is a video
-if (window.location.href.includes('watch')) {
-  chrome.runtime.sendMessage({ action: "redirectToExtensionPage" });
 
 
-
-
-
-
+//Use to avoid race conditions
+function sendMessage(message) {
+  if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.sendMessage) {
+    chrome.runtime.sendMessage(message);
+  } else {
+    console.warn("chrome.runtime not ready, retrying...");
+    setTimeout(() => safeSendMessage(message), 100);  
+  }
 }
+
+if (window.location.href.includes("watch")) {
+  sendMessage({ action: "redirectToExtensionPage" });
+}
+
 
 
 window.addEventListener('click', function (event) {
@@ -16,7 +22,7 @@ window.addEventListener('click', function (event) {
   if (anchor && anchor.href.includes('watch')) {
     event.preventDefault();                
     event.stopPropagation();               
-    chrome.runtime.sendMessage({ action: "redirectToExtensionPage" });
+    sendMessage({ action: "redirectToExtensionPage" });
 
 
     
