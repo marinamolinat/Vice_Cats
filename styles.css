@@ -3,7 +3,9 @@ body {
        cursor: help;
      
        font-family: "Handjet", sans-serif;
-       color: white
+       color: white;
+      cursor: url("cursor.cur"), auto;
+      background-image: url("images/textBackDrops/space.jpg");
 
 
      }
@@ -14,9 +16,19 @@ body {
        font-family: "Rubik 80s Fade", system-ui;
         font-weight: 400;
         font-style: normal;
-       color: #4e31de;
+       color: #ffffff;
        font-size: 30px;
-       margin-top: 20px;
+       margin-top: 15px;
+       margin-bottom: 5px;
+      
+       
+ 
+     }
+     #subHeading {
+      background-color: black;
+      font-size: 20px;
+      margin-bottom: 2px;
+
      }
      img {
         color: #4e31de;
@@ -32,15 +44,16 @@ body {
      }
      textarea {
 
-       height: auto;
        border-radius: 5px;
        border: 1px solid #ccc;
        box-sizing: border-box;
         
-        background-image: url(https://i.pinimg.com/736x/02/df/02/02df02b5e7bd5fa7344dce3ef1054658.jpg);
-        color: #00FFFF;
+        background-image: url("images/textBackDrops/industrial.jpg");
+        color: #ffffff;
          font-family: "Handjet", sans-serif;
         font-size: 40px;
+      width: 700px;
+      height: 400px;
      }
 
      #center {
@@ -58,6 +71,31 @@ body {
      }
      #wordCount {
         font-size: 15px;
+        background-color: black;
      }
+    
+
+     @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+     @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+button {
+   background: #111;
+  color: #0f0;
+  font-family: monospace;
+  font-size: 18px;
+  padding: 10px 20px;
+  border: 2px solid rgb(88, 158, 88);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  text-shadow: 0 0 5px rgb(70, 155, 70);
+  border-radius: 10px;
+  margin-top: 1px;
+  
+}
+button:active {
+  transform: scale(0.95);
+}
+
 
         
