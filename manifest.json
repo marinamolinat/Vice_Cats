@@ -10,7 +10,7 @@
       "128": "images/128.png"
     }
   },
-  "permissions": ["scripting", "tabs"],
+  "permissions": ["storage", "scripting", "tabs"],
   "host_permissions": ["https://www.youtube.com/*"],
   "background": {
     "service_worker": "background.js"
@@ -22,5 +22,12 @@
       "run_at": "document_idle"
       
     }
-  ]
+  ], 
+  "web_accessible_resources": [
+  {
+    "resources": ["index.html", "index.js"],
+    "matches": ["<all_urls>"]
+  }
+]
+
 }

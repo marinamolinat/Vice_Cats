@@ -3,6 +3,13 @@ const wordDisplayer = document.getElementById("wordCount");
 const submitButton = document.getElementById("submit");
 let wordCount = 0;
 
+chrome.storage.local.get(["video"]).then((result) => {
+  const youtubeVid = result.video;
+  textarea.value = youtubeVid
+  console.log(`Value for video retrieved: ${youtubeVid}`);
+});
+
+
 textarea.addEventListener("input", () => {
   const text = textarea.value.trim();
   wordCount = text.split(" ").length;
@@ -23,3 +30,5 @@ submitButton.addEventListener("click", () => {
 
     }
 })
+
+
