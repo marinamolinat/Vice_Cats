@@ -2,11 +2,11 @@ const textarea = document.getElementById("myText");
 const wordDisplayer = document.getElementById("wordCount");
 const submitButton = document.getElementById("submit");
 let wordCount = 0;
+let youtubeVid = "https://www.youtube.com";
 
 chrome.storage.local.get(["video"]).then((result) => {
-  const youtubeVid = result.video;
-  textarea.value = youtubeVid
-  console.log(`Value for video retrieved: ${youtubeVid}`);
+  youtubeVid = result.video;
+
 });
 
 
@@ -26,8 +26,10 @@ textarea.addEventListener("input", () => {
 
 submitButton.addEventListener("click", () => {
     if (wordCount >= 20) {
-        window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"; // Redirect to a YouTube video
-
+        chrome.storage.local.set({boolean: true}, () => { 
+        window.location.href = youtubeVid
+    });
+      
     }
 })
 
