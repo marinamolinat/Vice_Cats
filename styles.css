@@ -5,7 +5,12 @@ body {
        font-family: "Handjet", sans-serif;
        color: white;
       cursor: url("cursor.cur"), auto;
-      background-image: url("images/textBackDrops/space.jpg");
+      background-image: url("images/textBackDrops/mandelbrot.jpg");
+        width: 100%;
+     max-width: 100%;
+    margin: 0;
+  overflow-x: hidden;
+  box-sizing: border-box;
 
 
      }
@@ -16,26 +21,28 @@ body {
        font-family: "Rubik 80s Fade", system-ui;
         font-weight: 400;
         font-style: normal;
-       color: #ffffff;
+       color: #ffffffed;
        font-size: 30px;
        margin-top: 15px;
        margin-bottom: 5px;
+       }
+
+      h2 {
+         justify-self: center;
+         font-size: 50px;
+         font-weight: bolder;
+
+      }
       
        
  
-     }
      #subHeading {
       background-color: black;
       font-size: 20px;
       margin-bottom: 2px;
 
      }
-     img {
-        color: #4e31de;
-        border-radius: 50px;
-        border-style: dashed;
-        border-width: 10px;
-     }
+
      button {
        margin: 10px;
        padding: 10px 20px;
@@ -54,10 +61,12 @@ body {
         font-size: 40px;
       width: 700px;
       height: 400px;
+       resize: vertical;     
      }
 
      #center {
         display: flex;
+        flex: 1;
         flex-direction: column;
         align-items: center; 
 
@@ -66,7 +75,7 @@ body {
      #mainContainer {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: flex-start;
 
      }
      #wordCount {
@@ -75,8 +84,7 @@ body {
      }
     
 
-     @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
-     @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
 
 button {
    background: #111;
@@ -95,6 +103,36 @@ button {
 }
 button:active {
   transform: scale(0.95);
+}
+
+#left, #right {
+   width: 25%
+
+
+}
+
+ul {
+   display: flex;
+   flex-wrap: wrap;
+   width: 100%;
+
+}
+ul img{
+   width: 100px;
+  
+}
+ul li {
+  margin: 10px;
+
+}
+
+#left img {
+   width: 200px;
+   border-radius: 10px;
+   border-style: double;
+   display: block;
+   justify-self: center;
+
 }
 
 

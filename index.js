@@ -6,7 +6,7 @@ let youtubeVid = "https://www.youtube.com";
 
 chrome.storage.local.get(["video"]).then((result) => {
   youtubeVid = result.video;
-
+  
 });
 
 
@@ -30,6 +30,9 @@ submitButton.addEventListener("click", () => {
         window.location.href = youtubeVid
     });
       
+    }
+    else {
+      alert("MIAU! You need to write at least 20 words");
     }
 })
 
