@@ -1,5 +1,5 @@
 
-let videoUrl;
+let videoUrl = [null, null]
 
 
 //Use to avoid race conditions
@@ -14,7 +14,7 @@ function sendMessage(message) {
     });
 
     chrome.storage.local.set({boolean: false}, () => { // sets the ability to watch video as false
-      console.log(`Value for video set to ${videoUrl}`);
+
     });
 
     chrome.runtime.sendMessage(message);
@@ -28,13 +28,13 @@ function sendMessage(message) {
 
 //Detects if the page loaded is a yt vid 
 if (window.location.href.includes("watch")) {
-    videoUrl = window.location.href;
+    videoUrl[0] = window.location.href;
 
   Promise.all([
     chrome.storage.local.get(["video"]),
     chrome.storage.local.get(["boolean"])
   ]).then(([videoResult, boolyResult]) => {
-    const url = videoResult.video;
+    const url = videoResult.video[0];
     const booly = boolyResult.boolean; 
 
     console.log("Video URL from storage:", url);
@@ -43,10 +43,22 @@ if (window.location.href.includes("watch")) {
     // You can put your logic here
     if (!(booly === true && window.location.href === url)) {
       console.log("Redirecting to extension page");
+      const interval = setInterval(() => {
+    const titleElement = document.querySelector('#title > .style-scope > .ytd-watch-metadata');
+
+    if (titleElement) {
+      videoUrl[1] = titleElement.textContent.trim();
+      console.log("Title found:", videoUrl[1]);
+      clearInterval(interval); // stop checking once we get it
       sendMessage({ action: "redirectToExtensionPage" });
+    }
+  }, 200);
+      
       
     }
   });
+  
+
 
  
 
@@ -58,9 +70,19 @@ window.addEventListener('click', function (event) {
   const anchor = event.target.closest('a');
 
   if (anchor && anchor.href.includes('watch')) {
-    videoUrl = anchor.href;
     event.preventDefault();                
-    event.stopPropagation();               
+    event.stopPropagation(); 
+    videoUrl[0] = anchor.href;
+    const interval = setInterval(() => {
+    const titleElement = document.querySelector('#title > .style-scope > .ytd-watch-metadata');
+
+    if (titleElement) {
+      videoUrl[1] = titleElement.textContent.trim();
+      console.log("Title found:", videoUrl[1]);
+      clearInterval(interval); // stop checking once we get it
+      sendMessage("Video info ready!");
+    }
+  }, 200);    
     sendMessage({ action: "redirectToExtensionPage" });
 
 

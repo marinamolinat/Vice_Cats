@@ -3,10 +3,34 @@ const wordDisplayer = document.getElementById("wordCount");
 const submitButton = document.getElementById("submit");
 let wordCount = 0;
 let youtubeVid = "https://www.youtube.com";
+let title = "skibidi";
+
+
+//load history.
+chrome.storage.local.get("history", (result) => {
+  const history = result.history || [];
+  const ul = document.getElementById("historyUl");
+
+  // Clear old content (just in case)
+  ul.innerHTML = "";
+
+  history.slice().reverse().forEach(entry => {
+    const li = document.createElement("li");
+
+    // Optional: style it however you want
+    li.innerHTML = `
+      <a href="${entry.link}" target="_blank">${entry.title}</a><br>
+      Why: <br> ${entry.justification}
+    `;
+
+    ul.appendChild(li);
+  });
+});
 
 chrome.storage.local.get(["video"]).then((result) => {
-  youtubeVid = result.video;
-  
+  youtubeVid = result.video[0];
+  title = result.video[1]
+
 });
 
 
@@ -23,10 +47,27 @@ textarea.addEventListener("input", () => {
 
 });
 
+//save to history
+function saveToHistory(newEntry) {
+  chrome.storage.local.get("history", (result) => {
+    const history = result.history || [];
+    history.push(newEntry);
+    chrome.storage.local.set({ history });
+  });
+}
+
+
+
 
 submitButton.addEventListener("click", () => {
     if (wordCount >= 20) {
         chrome.storage.local.set({boolean: true}, () => { 
+        // Usage:
+      saveToHistory({
+        title: title,
+        link: youtubeVid,
+        justification: textarea.value
+      });  
         window.location.href = youtubeVid
     });
       
