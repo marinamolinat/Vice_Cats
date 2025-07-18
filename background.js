@@ -6,3 +6,5 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     chrome.tabs.update(sender.tab.id, { url });
   }
 });
+
+
