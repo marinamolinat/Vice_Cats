@@ -4,7 +4,6 @@ body {
      
        font-family: "Handjet", sans-serif;
        color: white;
-      cursor: url("cursor.cur"), auto;
       background-image: url("images/textBackDrops/fur.jpg");
         width: 100%;
      max-width: 100%;
@@ -148,7 +147,12 @@ ul {
    justify-self: center;
 
 }
+#left {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
 
+}
 
 ul li {
     max-width: fit-content;
@@ -170,7 +174,30 @@ ul li {
    background-color: aqua;
 }
 
+select {
+
+    background: linear-gradient(145deg, #0b0014, #1a002b);
+  color: #00ffea;
+  font-family: 'Press Start 2P', monospace; /* or another retro font */
+  font-size: 14px;
+  border: 2px solid #8a2be2;
+  border-radius: 6px;
+  padding: 10px 14px;
+  width: 300px;
+  outline: none;
+  box-shadow: 0 0 10px #8a2be2, 0 0 20px #00ffea inset;
+  appearance: none; /* remove native arrow */
+
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2210%22%20height%3D%227%22%20viewBox%3D%220%200%2010%207%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M1%201L5%205L9%201%22%20stroke%3D%22%23fff%22%20stroke-width%3D%222%22/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
+}
         
 
-
+select:focus {
+  box-shadow: 0 0 12px #ff00ff, 0 0 24px #8a2be2 inset;
+  border-color: #ff00ff;
+  color: #ffffff;
+}
 

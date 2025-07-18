@@ -4,6 +4,21 @@ const submitButton = document.getElementById("submit");
 let wordCount = 0;
 let youtubeVid = "https://www.youtube.com";
 let title = "skibidi";
+const changeCatButton = document.getElementById("buttonChangeCat");
+const catImage = document.getElementById("catImage");
+const comboBox = document.getElementById("catsCombo");
+
+//load vice
+chrome.storage.local.get("vice", (result) => {
+    if (result.vice != undefined && result.vice != null)
+    {
+      catImage.src = "images/textBackDrops/" + result.vice
+
+    }
+    
+  });
+
+
 
 
 //load history.
@@ -26,6 +41,7 @@ chrome.storage.local.get("history", (result) => {
     ul.appendChild(li);
   });
 });
+
 
 //Gets the yt url and yt title
 chrome.storage.local.get(["video"]).then((result) => {
@@ -77,4 +93,21 @@ submitButton.addEventListener("click", () => {
     }
 })
 
+changeCatButton.addEventListener("click", () => {
+  const vice = comboBox.value;
+  
+  catImage.src = "images/textBackDrops/" + vice;
+  chrome.storage.local.set({vice: vice}, () => {
+      console.log(`Current vice ${vice}`);
+    });
+
+
+
+  
+  
+
+
+
+
+})
 
