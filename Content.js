@@ -1,5 +1,5 @@
 
-let videoUrl = [null, null]
+let videoUrl = [null, "Title not found"]
 
 
 //Use to avoid race conditions
@@ -34,22 +34,24 @@ if (window.location.href.includes("watch")) {
     chrome.storage.local.get(["video"]),
     chrome.storage.local.get(["boolean"])
   ]).then(([videoResult, boolyResult]) => {
-    const url = videoResult.video[0];
+    let url;
+    if (Array.isArray(videoResult.video) && videoResult.video.length > 0){url = videoResult.video[0];}
     const booly = boolyResult.boolean; 
 
     console.log("Video URL from storage:", url);
     console.log("Booly value from storage:", booly);
 
-    // You can put your logic here
+    
     if (!(booly === true && window.location.href === url)) {
       console.log("Redirecting to extension page");
       const interval = setInterval(() => {
-    const titleElement = document.querySelector('#title > .style-scope > .ytd-watch-metadata');
+      const titleElement = document.querySelector('#title > .style-scope > .ytd-watch-metadata');
+  
 
     if (titleElement) {
-      videoUrl[1] = titleElement.textContent.trim();
+      videoUrl[1] = titleElement.textContent.trim;
       console.log("Title found:", videoUrl[1]);
-      clearInterval(interval); // stop checking once we get it
+      clearInterval(interval); 
       sendMessage({ action: "redirectToExtensionPage" });
     }
   }, 200);

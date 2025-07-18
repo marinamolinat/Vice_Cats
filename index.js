@@ -17,9 +17,9 @@ chrome.storage.local.get("history", (result) => {
   history.slice().reverse().forEach(entry => {
     const li = document.createElement("li");
 
-    // Optional: style it however you want
+    //style
     li.innerHTML = `
-      <a href="${entry.link}" target="_blank">${entry.title}</a><br>
+      <a href="${entry.link}" target="_blank">${entry.title + " 🔗"}</a><br>
       Why: <br> ${entry.justification}
     `;
 
@@ -27,13 +27,14 @@ chrome.storage.local.get("history", (result) => {
   });
 });
 
+//Gets the yt url and yt title
 chrome.storage.local.get(["video"]).then((result) => {
   youtubeVid = result.video[0];
   title = result.video[1]
 
 });
 
-
+//Makes color change
 textarea.addEventListener("input", () => {
   const text = textarea.value.trim();
   wordCount = text.split(" ").length;
@@ -47,7 +48,7 @@ textarea.addEventListener("input", () => {
 
 });
 
-//save to history
+//save to history function
 function saveToHistory(newEntry) {
   chrome.storage.local.get("history", (result) => {
     const history = result.history || [];
@@ -57,8 +58,7 @@ function saveToHistory(newEntry) {
 }
 
 
-
-
+//Submit butto
 submitButton.addEventListener("click", () => {
     if (wordCount >= 20) {
         chrome.storage.local.set({boolean: true}, () => { 

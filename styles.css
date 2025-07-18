@@ -28,10 +28,12 @@ body {
        }
 
       h2 {
+
          justify-self: center;
          font-size: 50px;
          font-weight: bolder;
-         margin-bottom: 0px;
+         margin-top: -30px;
+       
 
       }
       
@@ -117,26 +119,15 @@ button:active {
 }
 
 ul {
+   list-style-type: none;
+   
+   width: 70%;
+   justify-self: center;
    display: flex;
-   flex-wrap: wrap;
-   width: 100%;
-
-}
-
-#left img {
-   width: 200px;
-   border-radius: 10px;
-   border-style: double;
-   display: block;
-   justify-self: center;
-
-}
-
-#scroll {
-   width: 80%;
-   justify-self: center;
+   flex-direction: column;
    
    overflow-y:scroll; 
+    overflow: -moz-scrollbars-vertical; 
    overflow-x:hidden; 
    height: 400px;
    margin-right: 10px;
@@ -149,19 +140,37 @@ ul {
 
 }
 
-#scroll li {
-   width: 90%;
-   background-color: #0f0;
-   margin: 10px;
+#left img {
+   width: 200px;
+   border-radius: 10px;
+   border-style: double;
+   display: block;
+   justify-self: center;
+
 }
 
-li {
-   display: flex;
+
+ul li {
+    max-width: fit-content;
+  margin-left: 0;
+  margin-right: 30px;
+   background-color: rgb(55, 148, 225);
+   padding: 1px;
+   margin-top: 10px;
+   border-style: groove;
+
    flex-direction: column;
+   border-radius: 5px;
+   font-size:medium;
+
 }
+
 
 .historyTitle {
    background-color: aqua;
 }
 
         
+
+
+
