@@ -35,7 +35,7 @@ chrome.storage.local.get("history", (result) => {
     //style
     li.innerHTML = `
       <a href="${entry.link}" target="_blank">${entry.title + " 🔗"}</a><br>
-      Why: <br> ${entry.justification}
+      Why?: <br> ${entry.justification}
     `;
 
     ul.appendChild(li);
