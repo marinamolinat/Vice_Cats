@@ -1,5 +1,5 @@
 
-let videoArray = [null, "Title not found"]
+let videoUrl;
 
 
 //Use to avoid race conditions
@@ -9,8 +9,8 @@ function sendMessage(message) {
 
   if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.sendMessage) {
 
-    chrome.storage.local.set({video: videoArray}, () => { //saves yt video to local storage
-      console.log(`Value for video set to ${videoArray}`);
+    chrome.storage.local.set({video: videoUrl}, () => { //saves yt video to local storage
+      console.log(`Value for video set to ${videoUrl}`);
     });
 
     chrome.storage.local.set({boolean: false}, () => { // sets the ability to watch video as false
@@ -28,17 +28,13 @@ function sendMessage(message) {
 if (window.location.href.includes("watch")) {
   const currentUrl = window.location.href;
   const currentVideoId = getVideoId(currentUrl);
-  videoArray[0] = currentUrl;
+  videoUrl = currentUrl;
 
   Promise.all([
     chrome.storage.local.get(["video"]),
     chrome.storage.local.get(["boolean"])
   ]).then(([videoResult, boolyResult]) => {
-    let storedVideoId;
-
-    if (Array.isArray(videoResult.video) && videoResult.video.length > 0) {
-      storedVideoId = getVideoId(videoResult.video[0]);
-    }
+    let storedVideoId = getVideoId(videoResult.video);
 
     const booly = boolyResult.boolean;
 
@@ -48,28 +44,18 @@ if (window.location.href.includes("watch")) {
 
     // If not allowed, redirect
     if (!(booly === true && currentVideoId === storedVideoId)) {
-      console.log("Redirecting to extension page");
+      sendMessage({ action: "redirectToExtensionPage" });
 
-      const interval = setInterval(() => {
-        const titleElement = document.querySelector('#title .style-scope.ytd-watch-metadata');
-
-        if (titleElement) {
-          videoArray[1] = titleElement.textContent.trim();
-          console.log("Title found:", videoArray[1]);
-
-          clearInterval(interval);
-          sendMessage({ action: "redirectToExtensionPage" });
-        }
-      }, 200);
     }
+    
   });
 }
 
 function getVideoId(url) {
+  if (typeof url !== 'string') return null;
   const match = url.match(/[?&]v=([^&]+)/);
   return match ? match[1] : null;
 }
-
 
 
 
@@ -80,20 +66,12 @@ window.addEventListener('click', function (event) {
   if (anchor && anchor.href.includes('watch')) {
     event.preventDefault();                
     event.stopPropagation(); 
-    videoArray[0] = anchor.href;
+    videoUrl = anchor.href;
     const interval = setInterval(() => {
   
-      let titleElement = anchor.querySelector('.yt-core-attributed-string.yt-core-attributed-string--white-space-pre-wrap') 
-                    || anchor.closest('.style-scope.ytd-rich-grid-media')?.querySelector('.yt-core-attributed-string.yt-core-attributed-string--white-space-pre-wrap');
+    
 
 
-
-    if (titleElement) {
-      videoArray[1] = titleElement.textContent.trim();
-  
-      clearInterval(interval); // stop checking once we get it
-      sendMessage("Video info ready!");
-    }
   }, 200);    
     sendMessage({ action: "redirectToExtensionPage" });
 

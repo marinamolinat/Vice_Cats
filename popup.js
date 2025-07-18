@@ -23,7 +23,7 @@ chrome.storage.local.get("history", (result) => {
 
     //style
     li.innerHTML = `
-      <a href="${entry.link}" target="_blank">${entry.title + " LINK"}</a><br>
+      <a href="${entry.link}" target="_blank">LINK</a><br>
       Why?: <br> ${entry.justification}
     `;
 

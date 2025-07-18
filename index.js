@@ -3,7 +3,7 @@ const wordDisplayer = document.getElementById("wordCount");
 const submitButton = document.getElementById("submit");
 let wordCount = 0;
 let youtubeVid = "https://www.youtube.com";
-let title = "skibidi";
+
 const changeCatButton = document.getElementById("buttonChangeCat");
 const catImage = document.getElementById("catImage");
 const comboBox = document.getElementById("catsCombo");
@@ -34,7 +34,7 @@ chrome.storage.local.get("history", (result) => {
 
     //style
     li.innerHTML = `
-      <a href="${entry.link}" target="_blank">${entry.title + " 🔗"}</a><br>
+      <a href="${entry.link}" target="_blank"> "🔗" </a><br>
       Why?: <br> ${entry.justification}
     `;
 
@@ -45,8 +45,7 @@ chrome.storage.local.get("history", (result) => {
 
 //Gets the yt url and yt title
 chrome.storage.local.get(["video"]).then((result) => {
-  youtubeVid = result.video[0];
-  title = result.video[1]
+  youtubeVid = result.video;
 
 });
 
@@ -74,13 +73,12 @@ function saveToHistory(newEntry) {
 }
 
 
-//Submit butto
+//Submit button
 submitButton.addEventListener("click", () => {
     if (wordCount >= 20) {
         chrome.storage.local.set({boolean: true}, () => { 
         // Usage:
       saveToHistory({
-        title: title,
         link: youtubeVid,
         justification: textarea.value
       });  
@@ -101,10 +99,6 @@ changeCatButton.addEventListener("click", () => {
       console.log(`Current vice ${vice}`);
     });
 
-
-
-  
-  
 
 
 
