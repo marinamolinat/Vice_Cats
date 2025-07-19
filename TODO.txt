@@ -1,6 +1,0 @@
-- Work on index.html
-- make a history of the videos
-- fix possible race condition
-- make cool yt theme
-- make a {nobody wirtes that fast function}
-
