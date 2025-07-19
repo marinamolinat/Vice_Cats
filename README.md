@@ -26,7 +26,7 @@ Download the GitHub repo and go to `chrome://extensions/` in Chrome. Then, in th
 
 The popup of the extension displays your current Vice Cat and the history of videos you've watched — along with the reasons you gave for watching them. If you haven't used the extension yet, this section will be blank.
 
-<img title="img" alt="Alt text" src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/90da061b376b6b1875167ca94df4d479941ff1f4_screenshot_2025-07-18_at_3.22.48___pm.png">
+<img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/474edc54cf263b271cdb8cc2837ccef2a784fdd8_screenshot_2025-07-18_at_3.27.53___pm.png">
 
 Then, whenever you click on a video, the following screen will appear, prompting you to write at least 20 words about why you want to watch it:
 
